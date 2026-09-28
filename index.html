@@ -2,29 +2,97 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-<title>Mente Leve</title>
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reserva Escolar</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-<header>
-            <button>
-                Início
-            </button>
+    <header>
+        <h1>Reserva Escolar</h1>
+        <p>Reserve equipamentos da escola.</p>
+    </header>
 
-            <button>
-                Meu humor
-            </button>
+    <main>
 
-            <button>
-                Diário
-            </button>
+        <!-- Tarefa 1 -->
+        <section>
+            <h2>Consultar equipamentos</h2>
 
-            <button>
-                Conteúdos
+            <input type="text" id="pesquisa" placeholder="Pesquisar equipamento">
+
+            <div id="equipamentos">
+                <div class="equipamento">
+                    <h3>Notebook</h3>
+                    <p>Informática</p>
+                    <button onclick="selecionar('Notebook')">
+                        Reservar
+                    </button>
+                </div>
+
+                <div class="equipamento">
+                    <h3>Projetor</h3>
+                    <p>Audiovisual</p>
+                    <button onclick="selecionar('Projetor')">
+                        Reservar
+                    </button>
+                </div>
+
+                <div class="equipamento">
+                    <h3>Caixa de Som</h3>
+                    <p>Audiovisual</p>
+                    <button onclick="selecionar('Caixa de Som')">
+                        Reservar
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tarefa 2 -->
+        <section>
+            <h2>Fazer reserva</h2>
+
+            <form id="formulario">
+
+                <label>Nome:</label>
+                <input type="text" id="nome" required>
+
+                <label>Equipamento:</label>
+                <select id="equipamento" required>
+                    <option value="">Selecione</option>
+                    <option>Notebook</option>
+                    <option>Projetor</option>
+                    <option>Caixa de Som</option>
+                </select>
+
+                <label>Data:</label>
+                <input type="date" id="data" required>
+
+                <button type="submit">Confirmar reserva</button>
+                <button type="reset">Cancelar</button>
+
+            </form>
+
+            <p id="mensagem"></p>
+        </section>
+
+        <!-- Tarefa 3 -->
+        <section>
+            <h2>Minha reserva</h2>
+
+            <div id="reserva">
+                <p>Nenhuma reserva realizada.</p>
+            </div>
+
+            <button id="cancelar" onclick="cancelarReserva()" hidden>
+                Cancelar reserva
             </button>
- </header>
-<script src="script.js"></script>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
 </body>
+</html>
