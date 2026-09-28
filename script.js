@@ -1,92 +1,64 @@
-* {
-    box-sizing: border-box;
+let reservaAtual = null;
+
+function selecionar(equipamento) {
+    document.getElementById("equipamento").value = equipamento;
+
+    document.getElementById("nome").focus();
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f2f4f7;
-    color: #222;
-}
+document.getElementById("formulario").addEventListener("submit", function(event) {
 
-header {
-    background: #3157d5;
-    color: white;
-    text-align: center;
-    padding: 30px 15px;
-}
+    event.preventDefault();
 
-main {
-    width: 90%;
-    max-width: 900px;
-    margin: 30px auto;
-}
+    let nome = document.getElementById("nome").value;
+    let equipamento = document.getElementById("equipamento").value;
+    let data = document.getElementById("data").value;
 
-section {
-    background: white;
-    padding: 25px;
-    margin-bottom: 20px;
-    border-radius: 10px;
-}
-
-h2 {
-    margin-top: 0;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 10px;
-    margin: 8px 0 15px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-button {
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    background: #3157d5;
-    color: white;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-button:hover {
-    background: #2444ad;
-}
-
-.equipamento {
-    border: 1px solid #ddd;
-    padding: 15px;
-    margin: 10px 0;
-    border-radius: 7px;
-}
-
-.equipamento h3 {
-    margin-bottom: 5px;
-}
-
-#mensagem {
-    font-weight: bold;
-    color: #18794e;
-}
-
-#cancelar {
-    background: #c62828;
-}
-
-@media (max-width: 600px) {
-
-    main {
-        width: 95%;
+    if (nome === "" || equipamento === "" || data === "") {
+        document.getElementById("mensagem").textContent =
+            "Preencha todos os campos.";
+        return;
     }
 
-    section {
-        padding: 18px;
-    }
+    reservaAtual = {
+        nome: nome,
+        equipamento: equipamento,
+        data: data
+    };
 
-    header {
-        padding: 20px 10px;
+    document.getElementById("mensagem").textContent =
+        "Reserva realizada com sucesso!";
+
+    mostrarReserva();
+
+    document.getElementById("formulario").reset();
+});
+
+function mostrarReserva() {
+
+    document.getElementById("reserva").innerHTML = `
+        <p><strong>Nome:</strong> ${reservaAtual.nome}</p>
+        <p><strong>Equipamento:</strong> ${reservaAtual.equipamento}</p>
+        <p><strong>Data:</strong> ${reservaAtual.data}</p>
+    `;
+
+    document.getElementById("cancelar").hidden = false;
+}
+
+function cancelarReserva() {
+
+    let confirmar = confirm("Deseja cancelar a reserva?");
+
+    if (confirmar) {
+
+        reservaAtual = null;
+
+        document.getElementById("reserva").innerHTML =
+            "<p>Nenhuma reserva realizada.</p>";
+
+        document.getElementById("cancelar").hidden = true;
+
+        document.getElementById("mensagem").textContent =
+            "Reserva cancelada.";
     }
 }
