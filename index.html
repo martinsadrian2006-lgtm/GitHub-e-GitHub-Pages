@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Reserva Escolar</title>
+
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -11,88 +14,196 @@
 
     <header>
         <h1>Reserva Escolar</h1>
-        <p>Reserve equipamentos da escola.</p>
+        <p>Consulte e reserve equipamentos da escola.</p>
+
+        <nav>
+            <a href="#equipamentos">Equipamentos</a>
+            <a href="#reserva">Reservar</a>
+            <a href="#minhas-reservas">Minhas reservas</a>
+        </nav>
     </header>
+
 
     <main>
 
-        <!-- Tarefa 1 -->
-        <section>
-            <h2>Consultar equipamentos</h2>
+        <!-- CONSULTAR EQUIPAMENTOS -->
+        <section id="equipamentos">
 
-            <input type="text" id="pesquisa" placeholder="Pesquisar equipamento">
+            <h2>1. Consultar equipamentos</h2>
 
-            <div id="equipamentos">
-                <div class="equipamento">
-                    <h3>Notebook</h3>
-                    <p>Informática</p>
-                    <button onclick="selecionar('Notebook')">
-                        Reservar
-                    </button>
-                </div>
+            <p>
+                Veja os equipamentos disponíveis para uso.
+            </p>
 
-                <div class="equipamento">
-                    <h3>Projetor</h3>
-                    <p>Audiovisual</p>
-                    <button onclick="selecionar('Projetor')">
-                        Reservar
-                    </button>
-                </div>
+            <div class="filtros">
 
-                <div class="equipamento">
-                    <h3>Caixa de Som</h3>
-                    <p>Audiovisual</p>
-                    <button onclick="selecionar('Caixa de Som')">
-                        Reservar
-                    </button>
-                </div>
-            </div>
-        </section>
+                <input
+                    type="text"
+                    id="busca"
+                    placeholder="Pesquisar equipamento..."
+                >
 
-        <!-- Tarefa 2 -->
-        <section>
-            <h2>Fazer reserva</h2>
+                <select id="categoria">
 
-            <form id="formulario">
+                    <option value="todas">
+                        Todas as categorias
+                    </option>
 
-                <label>Nome:</label>
-                <input type="text" id="nome" required>
+                    <option value="Informática">
+                        Informática
+                    </option>
 
-                <label>Equipamento:</label>
-                <select id="equipamento" required>
-                    <option value="">Selecione</option>
-                    <option>Notebook</option>
-                    <option>Projetor</option>
-                    <option>Caixa de Som</option>
+                    <option value="Audiovisual">
+                        Audiovisual
+                    </option>
+
+                    <option value="Laboratório">
+                        Laboratório
+                    </option>
+
                 </select>
 
-                <label>Data:</label>
-                <input type="date" id="data" required>
+            </div>
 
-                <button type="submit">Confirmar reserva</button>
-                <button type="reset">Cancelar</button>
+
+            <div id="lista-equipamentos"></div>
+
+            <p id="estado-vazio">
+                Nenhum equipamento encontrado.
+            </p>
+
+        </section>
+
+
+        <!-- FAZER RESERVA -->
+        <section id="reserva">
+
+            <h2>2. Fazer uma reserva</h2>
+
+            <p>
+                Preencha os dados para reservar um equipamento.
+            </p>
+
+
+            <form id="form-reserva">
+
+                <label for="equipamento">
+                    Equipamento
+                </label>
+
+                <select id="equipamento" required>
+
+                    <option value="">
+                        Selecione um equipamento
+                    </option>
+
+                </select>
+
+
+                <label for="nome">
+                    Nome
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Digite seu nome"
+                    required
+                >
+
+
+                <label for="data">
+                    Data
+                </label>
+
+                <input
+                    type="date"
+                    id="data"
+                    required
+                >
+
+
+                <label for="horario">
+                    Horário
+                </label>
+
+                <select id="horario" required>
+
+                    <option value="">
+                        Selecione um horário
+                    </option>
+
+                    <option>
+                        08:00 - 10:00
+                    </option>
+
+                    <option>
+                        10:00 - 12:00
+                    </option>
+
+                    <option>
+                        13:00 - 15:00
+                    </option>
+
+                    <option>
+                        15:00 - 17:00
+                    </option>
+
+                </select>
+
+
+                <div class="botoes">
+
+                    <button type="submit">
+                        Confirmar reserva
+                    </button>
+
+                    <button
+                        type="reset"
+                        class="cancelar"
+                    >
+                        Limpar
+                    </button>
+
+                </div>
 
             </form>
 
-            <p id="mensagem"></p>
         </section>
 
-        <!-- Tarefa 3 -->
-        <section>
-            <h2>Minha reserva</h2>
 
-            <div id="reserva">
-                <p>Nenhuma reserva realizada.</p>
-            </div>
+        <!-- MINHAS RESERVAS -->
+        <section id="minhas-reservas">
 
-            <button id="cancelar" onclick="cancelarReserva()" hidden>
-                Cancelar reserva
-            </button>
+            <h2>3. Minhas reservas</h2>
+
+            <p>
+                Veja ou cancele suas reservas.
+            </p>
+
+
+            <div id="lista-reservas"></div>
+
+            <p id="sem-reservas">
+                Você ainda não possui reservas.
+            </p>
+
         </section>
 
     </main>
 
+
+    <footer>
+
+        <p>
+            Projeto acadêmico - Reserva Escolar
+        </p>
+
+    </footer>
+
+
     <script src="script.js"></script>
 
 </body>
+
 </html>
