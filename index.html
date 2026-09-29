@@ -13,156 +13,345 @@
 <body>
 
     <header>
-        <h1>Reserva Escolar</h1>
-        <p>Consulte e reserve equipamentos da escola.</p>
 
-        <nav>
-            <a href="#equipamentos">Equipamentos</a>
-            <a href="#reserva">Reservar</a>
-            <a href="#minhas-reservas">Minhas reservas</a>
-        </nav>
+        <div class="cabecalho">
+
+            <div>
+                <h1>Reserva Escolar</h1>
+
+                <p>
+                    Consulte e reserve equipamentos da escola.
+                </p>
+            </div>
+
+            <nav aria-label="Navegação principal">
+
+                <a href="#equipamentos">
+                    Equipamentos
+                </a>
+
+                <a href="#reserva">
+                    Reservar
+                </a>
+
+                <a href="#minhas-reservas">
+                    Minhas reservas
+                </a>
+
+            </nav>
+
+        </div>
+
     </header>
 
 
     <main>
 
-        <!-- CONSULTAR EQUIPAMENTOS -->
-        <section id="equipamentos">
+        <!-- INTRODUÇÃO -->
 
-            <h2>1. Consultar equipamentos</h2>
+        <section class="introducao">
+
+            <h2>
+                Sistema de Reserva de Equipamentos
+            </h2>
 
             <p>
-                Veja os equipamentos disponíveis para uso.
-            </p>
-
-            <div class="filtros">
-
-                <input
-                    type="text"
-                    id="busca"
-                    placeholder="Pesquisar equipamento..."
-                >
-
-                <select id="categoria">
-
-                    <option value="todas">
-                        Todas as categorias
-                    </option>
-
-                    <option value="Informática">
-                        Informática
-                    </option>
-
-                    <option value="Audiovisual">
-                        Audiovisual
-                    </option>
-
-                    <option value="Laboratório">
-                        Laboratório
-                    </option>
-
-                </select>
-
-            </div>
-
-
-            <div id="lista-equipamentos"></div>
-
-            <p id="estado-vazio">
-                Nenhum equipamento encontrado.
+                Escolha um equipamento, selecione a data e o horário
+                e faça sua reserva de forma simples.
             </p>
 
         </section>
 
 
-        <!-- FAZER RESERVA -->
+        <!-- EQUIPAMENTOS -->
+
+        <section id="equipamentos">
+
+            <div class="titulo-secao">
+
+                <div>
+
+                    <span>01</span>
+
+                    <div>
+
+                        <h2>
+                            Consultar equipamentos
+                        </h2>
+
+                        <p>
+                            Encontre o equipamento que deseja reservar.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- PESQUISA -->
+
+            <div class="filtros">
+
+                <div>
+
+                    <label for="busca">
+                        Pesquisar equipamento
+                    </label>
+
+                    <input
+                        type="search"
+                        id="busca"
+                        placeholder="Ex.: notebook"
+                    >
+
+                </div>
+
+
+                <div>
+
+                    <label for="categoria">
+                        Categoria
+                    </label>
+
+                    <select id="categoria">
+
+                        <option value="todas">
+                            Todas
+                        </option>
+
+                        <option value="Informática">
+                            Informática
+                        </option>
+
+                        <option value="Audiovisual">
+                            Audiovisual
+                        </option>
+
+                        <option value="Laboratório">
+                            Laboratório
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- LISTA -->
+
+            <div
+                id="lista-equipamentos"
+                class="lista-equipamentos"
+            ></div>
+
+
+            <div
+                id="estado-vazio"
+                class="estado-vazio"
+                hidden
+            >
+
+                <strong>
+                    Nenhum equipamento encontrado.
+                </strong>
+
+                <p>
+                    Tente pesquisar outro equipamento
+                    ou escolher outra categoria.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- RESERVA -->
+
         <section id="reserva">
 
-            <h2>2. Fazer uma reserva</h2>
+            <div class="titulo-secao">
 
-            <p>
-                Preencha os dados para reservar um equipamento.
-            </p>
+                <div>
+
+                    <span>02</span>
+
+                    <div>
+
+                        <h2>
+                            Fazer uma reserva
+                        </h2>
+
+                        <p>
+                            Preencha os dados da reserva.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
             <form id="form-reserva">
 
-                <label for="equipamento">
-                    Equipamento
-                </label>
 
-                <select id="equipamento" required>
+                <!-- EQUIPAMENTO -->
 
-                    <option value="">
-                        Selecione um equipamento
-                    </option>
+                <div class="campo">
 
-                </select>
+                    <label for="equipamento">
+                        Equipamento
+                    </label>
 
+                    <select
+                        id="equipamento"
+                        required
+                    >
 
-                <label for="nome">
-                    Nome
-                </label>
+                        <option value="">
+                            Selecione um equipamento
+                        </option>
 
-                <input
-                    type="text"
-                    id="nome"
-                    placeholder="Digite seu nome"
-                    required
-                >
+                    </select>
+
+                </div>
 
 
-                <label for="data">
-                    Data
-                </label>
+                <!-- NOME -->
 
-                <input
-                    type="date"
-                    id="data"
-                    required
-                >
+                <div class="campo">
+
+                    <label for="nome">
+                        Nome do responsável
+                    </label>
+
+                    <input
+                        type="text"
+                        id="nome"
+                        placeholder="Digite seu nome"
+                        minlength="3"
+                        required
+                    >
+
+                </div>
 
 
-                <label for="horario">
-                    Horário
-                </label>
+                <!-- DATA -->
 
-                <select id="horario" required>
+                <div class="campo">
 
-                    <option value="">
-                        Selecione um horário
-                    </option>
+                    <label for="data">
+                        Data da reserva
+                    </label>
 
-                    <option>
-                        08:00 - 10:00
-                    </option>
+                    <input
+                        type="date"
+                        id="data"
+                        required
+                    >
 
-                    <option>
-                        10:00 - 12:00
-                    </option>
+                </div>
 
-                    <option>
-                        13:00 - 15:00
-                    </option>
 
-                    <option>
-                        15:00 - 17:00
-                    </option>
+                <!-- HORÁRIO -->
 
-                </select>
+                <div class="campo">
 
+                    <label for="horario">
+                        Horário
+                    </label>
+
+                    <select
+                        id="horario"
+                        required
+                    >
+
+                        <option value="">
+                            Selecione um horário
+                        </option>
+
+                        <optgroup label="Horários">
+
+                            <option value="08:00 - 09:00">
+                                08:00 - 09:00
+                            </option>
+
+                            <option value="09:00 - 10:00">
+                                09:00 - 10:00
+                            </option>
+
+                            <option value="10:00 - 11:00">
+                                10:00 - 11:00
+                            </option>
+
+                            <option value="11:00 - 12:00">
+                                11:00 - 12:00
+                            </option>
+
+                            <option value="12:00 - 13:00">
+                                12:00 - 13:00
+                            </option>
+
+                            <option value="13:00 - 14:00">
+                                13:00 - 14:00
+                            </option>
+
+                            <option value="14:00 - 15:00">
+                                14:00 - 15:00
+                            </option>
+
+                            <option value="15:00 - 16:00">
+                                15:00 - 16:00
+                            </option>
+
+                            <option value="16:00 - 17:00">
+                                16:00 - 17:00
+                            </option>
+
+                        </optgroup>
+
+
+                        <optgroup label="Períodos">
+
+                            <option value="08:00 - 12:00">
+                                Período da manhã
+                            </option>
+
+                            <option value="13:00 - 17:00">
+                                Período da tarde
+                            </option>
+
+                            <option value="08:00 - 17:00">
+                                Dia inteiro
+                            </option>
+
+                        </optgroup>
+
+                    </select>
+
+                </div>
+
+
+                <!-- BOTÕES -->
 
                 <div class="botoes">
 
-                    <button type="submit">
+                    <button
+                        type="submit"
+                        class="botao principal"
+                    >
                         Confirmar reserva
                     </button>
 
+
                     <button
                         type="reset"
-                        class="cancelar"
+                        class="botao secundario"
                     >
-                        Limpar
+                        Limpar formulário
                     </button>
 
                 </div>
@@ -172,21 +361,53 @@
         </section>
 
 
-        <!-- MINHAS RESERVAS -->
+        <!-- RESERVAS -->
+
         <section id="minhas-reservas">
 
-            <h2>3. Minhas reservas</h2>
+            <div class="titulo-secao">
 
-            <p>
-                Veja ou cancele suas reservas.
-            </p>
+                <div>
+
+                    <span>03</span>
+
+                    <div>
+
+                        <h2>
+                            Minhas reservas
+                        </h2>
+
+                        <p>
+                            Consulte ou cancele suas reservas.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
 
 
-            <div id="lista-reservas"></div>
+            <div
+                id="lista-reservas"
+                class="lista-reservas"
+            ></div>
 
-            <p id="sem-reservas">
-                Você ainda não possui reservas.
-            </p>
+
+            <div
+                id="sem-reservas"
+                class="estado-vazio"
+            >
+
+                <strong>
+                    Você ainda não possui reservas.
+                </strong>
+
+                <p>
+                    Suas reservas aparecerão aqui.
+                </p>
+
+            </div>
 
         </section>
 
@@ -196,7 +417,7 @@
     <footer>
 
         <p>
-            Projeto acadêmico - Reserva Escolar
+            Projeto acadêmico — Reserva Escolar
         </p>
 
     </footer>
