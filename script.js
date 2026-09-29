@@ -1,184 +1,133 @@
-/* ==============================
-   EQUIPAMENTOS
-================================ */
-
 const equipamentos = [
 
     {
         id: 1,
         nome: "Notebook Dell",
-        categoria: "Informática",
-        descricao:
-            "Notebook para aulas, trabalhos e apresentações."
+        categoria: "Informática"
     },
 
     {
         id: 2,
         nome: "Notebook Lenovo",
-        categoria: "Informática",
-        descricao:
-            "Notebook para atividades escolares."
+        categoria: "Informática"
     },
 
     {
         id: 3,
-        nome: "Notebook HP",
-        categoria: "Informática",
-        descricao:
-            "Notebook para pesquisas e trabalhos."
+        nome: "Projetor Epson",
+        categoria: "Audiovisual"
     },
 
     {
         id: 4,
-        nome: "Projetor Epson",
-        categoria: "Audiovisual",
-        descricao:
-            "Projetor para apresentações e aulas."
+        nome: "Projetor BenQ",
+        categoria: "Audiovisual"
     },
 
     {
         id: 5,
-        nome: "Projetor BenQ",
-        categoria: "Audiovisual",
-        descricao:
-            "Projetor para salas de aula e eventos."
+        nome: "Tablet Samsung",
+        categoria: "Informática"
     },
 
     {
         id: 6,
-        nome: "Tablet Samsung",
-        categoria: "Informática",
-        descricao:
-            "Tablet para pesquisas e atividades digitais."
+        nome: "Tablet Lenovo",
+        categoria: "Informática"
     },
 
     {
         id: 7,
-        nome: "Tablet Lenovo",
-        categoria: "Informática",
-        descricao:
-            "Tablet para atividades escolares."
+        nome: "Caixa de Som",
+        categoria: "Audiovisual"
     },
 
     {
         id: 8,
-        nome: "Caixa de Som",
-        categoria: "Audiovisual",
-        descricao:
-            "Caixa de som para apresentações e eventos."
+        nome: "Microfone",
+        categoria: "Audiovisual"
     },
 
     {
         id: 9,
-        nome: "Microfone",
-        categoria: "Audiovisual",
-        descricao:
-            "Microfone para apresentações e palestras."
+        nome: "Webcam",
+        categoria: "Informática"
     },
 
     {
         id: 10,
-        nome: "Webcam",
-        categoria: "Informática",
-        descricao:
-            "Webcam para aulas e reuniões online."
+        nome: "Câmera Digital",
+        categoria: "Audiovisual"
     },
 
     {
         id: 11,
-        nome: "Câmera Digital",
-        categoria: "Audiovisual",
-        descricao:
-            "Câmera para registros de atividades escolares."
+        nome: "Kit Arduino",
+        categoria: "Laboratório"
     },
 
     {
         id: 12,
-        nome: "Kit Arduino",
-        categoria: "Laboratório",
-        descricao:
-            "Kit para atividades de programação e eletrônica."
+        nome: "Kit Robótica",
+        categoria: "Laboratório"
     },
 
     {
         id: 13,
-        nome: "Kit Robótica",
-        categoria: "Laboratório",
-        descricao:
-            "Kit para projetos de robótica."
+        nome: "Multímetro",
+        categoria: "Laboratório"
     },
 
     {
         id: 14,
-        nome: "Multímetro",
-        categoria: "Laboratório",
-        descricao:
-            "Equipamento para atividades de eletrônica."
-    },
-
-    {
-        id: 15,
         nome: "Extensão Elétrica",
-        categoria: "Laboratório",
-        descricao:
-            "Extensão para utilização de equipamentos."
+        categoria: "Laboratório"
     }
 
 ];
 
 
-/* ==============================
-   RESERVAS
-================================ */
-
 let reservas = [];
 
-
-/* ==============================
-   ELEMENTOS DA PÁGINA
-================================ */
 
 const listaEquipamentos =
     document.getElementById(
         "lista-equipamentos"
     );
 
-
 const busca =
-    document.getElementById(
-        "busca"
-    );
-
+    document.getElementById("busca");
 
 const categoria =
+    document.getElementById("categoria");
+
+const semEquipamentos =
     document.getElementById(
-        "categoria"
+        "sem-equipamentos"
     );
 
-
-const estadoVazio =
-    document.getElementById(
-        "estado-vazio"
-    );
-
-
-const selectEquipamento =
+const equipamentoSelect =
     document.getElementById(
         "equipamento"
     );
 
-
 const formulario =
     document.getElementById(
-        "form-reserva"
+        "formulario"
     );
 
+const dataInput =
+    document.getElementById("data");
+
+const horarioSelect =
+    document.getElementById(
+        "horario"
+    );
 
 const listaReservas =
     document.getElementById(
         "lista-reservas"
     );
-
 
 const semReservas =
     document.getElementById(
@@ -186,55 +135,33 @@ const semReservas =
     );
 
 
-const campoData =
-    document.getElementById(
-        "data"
-    );
+/* DATA DE HOJE */
+
+const hoje =
+    new Date()
+        .toISOString()
+        .split("T")[0];
+
+dataInput.min = hoje;
 
 
-/* ==============================
-   DATA MÍNIMA
-================================ */
+/* VERIFICAR CONFLITO */
 
-const hoje = new Date();
-
-
-const dataHoje =
-    new Date(
-        hoje.getTime()
-        -
-        hoje.getTimezoneOffset() * 60000
-    )
-    .toISOString()
-    .split("T")[0];
-
-
-campoData.min = dataHoje;
-
-
-/* ==============================
-   VERIFICAR RESERVA
-================================ */
-
-function estaReservado(
-    equipamentoId,
+function jaReservado(
+    equipamento,
     data,
     horario
 ) {
 
     return reservas.some(
-        function (reserva) {
+        function(reserva) {
 
             return (
-                reserva.equipamentoId ===
-                equipamentoId
-
-                &&
+                reserva.equipamento ===
+                equipamento &&
 
                 reserva.data ===
-                data
-
-                &&
+                data &&
 
                 reserva.horario ===
                 horario
@@ -246,17 +173,13 @@ function estaReservado(
 }
 
 
-/* ==============================
-   MOSTRAR EQUIPAMENTOS
-================================ */
+/* MOSTRAR EQUIPAMENTOS */
 
 function mostrarEquipamentos() {
 
     const texto =
         busca.value
-            .toLowerCase()
-            .trim();
-
+            .toLowerCase();
 
     const filtro =
         categoria.value;
@@ -265,132 +188,92 @@ function mostrarEquipamentos() {
     listaEquipamentos.innerHTML = "";
 
 
-    const resultados =
+    const encontrados =
         equipamentos.filter(
-            function (equipamento) {
+            function(item) {
 
                 const nome =
-                    equipamento.nome
+                    item.nome
                         .toLowerCase();
 
+                const nomeOk =
+                    nome.includes(texto);
 
-                const descricao =
-                    equipamento.descricao
-                        .toLowerCase();
-
-
-                const encontrouTexto =
-                    nome.includes(texto)
-                    ||
-                    descricao.includes(texto);
-
-
-                const encontrouCategoria =
-                    filtro === "todas"
-                    ||
-                    equipamento.categoria ===
-                    filtro;
+                const categoriaOk =
+                    filtro === "todas" ||
+                    item.categoria === filtro;
 
 
                 return (
-                    encontrouTexto
-                    &&
-                    encontrouCategoria
+                    nomeOk &&
+                    categoriaOk
                 );
 
             }
         );
 
 
-    if (resultados.length === 0) {
-
-        estadoVazio.hidden = false;
-
-        return;
-
-    }
+    semEquipamentos.hidden =
+        encontrados.length > 0;
 
 
-    estadoVazio.hidden = true;
+    encontrados.forEach(
+        function(item) {
 
-
-    resultados.forEach(
-        function (equipamento) {
-
-            const card =
+            const div =
                 document.createElement(
-                    "article"
+                    "div"
                 );
 
+            div.className =
+                "equipamento";
 
-            card.className =
-                "card";
 
-
-            card.innerHTML = `
-
-                <span class="status disponivel">
-                    Disponível para reserva
-                </span>
+            div.innerHTML = `
 
                 <h3>
-                    ${equipamento.nome}
+                    ${item.nome}
                 </h3>
 
                 <p>
-                    <strong>
-                        Categoria:
-                    </strong>
-
-                    ${equipamento.categoria}
-                </p>
-
-                <p>
-                    ${equipamento.descricao}
+                    ${item.categoria}
                 </p>
 
                 <button
                     type="button"
-                    class="botao principal"
                 >
-                    Reservar equipamento
+                    Reservar
                 </button>
 
             `;
 
 
-            const botao =
-                card.querySelector(
-                    "button"
+            div
+                .querySelector("button")
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        equipamentoSelect.value =
+                            item.id;
+
+                        document
+                            .getElementById(
+                                "reserva"
+                            )
+                            .scrollIntoView({
+                                behavior:
+                                    "smooth"
+                            });
+
+                        equipamentoSelect.focus();
+
+                    }
                 );
 
 
-            botao.addEventListener(
-                "click",
-                function () {
-
-                    selectEquipamento.value =
-                        equipamento.id;
-
-
-                    document
-                        .getElementById(
-                            "reserva"
-                        )
-                        .scrollIntoView({
-                            behavior:
-                                "smooth"
-                        });
-
-
-                    selectEquipamento.focus();
-
-                }
-            );
-
-
             listaEquipamentos.appendChild(
-                card
+                div
             );
 
         }
@@ -399,23 +282,21 @@ function mostrarEquipamentos() {
 }
 
 
-/* ==============================
-   PREENCHER EQUIPAMENTOS
-================================ */
+/* PREENCHER SELECT */
 
 function preencherEquipamentos() {
 
-    selectEquipamento.innerHTML = `
+    equipamentoSelect.innerHTML = `
 
         <option value="">
-            Selecione um equipamento
+            Escolha um equipamento
         </option>
 
     `;
 
 
     equipamentos.forEach(
-        function (equipamento) {
+        function(item) {
 
             const option =
                 document.createElement(
@@ -424,18 +305,14 @@ function preencherEquipamentos() {
 
 
             option.value =
-                equipamento.id;
+                item.id;
 
 
             option.textContent =
-                equipamento.nome
-                +
-                " — "
-                +
-                equipamento.categoria;
+                item.nome;
 
 
-            selectEquipamento.appendChild(
+            equipamentoSelect.appendChild(
                 option
             );
 
@@ -445,37 +322,27 @@ function preencherEquipamentos() {
 }
 
 
-/* ==============================
-   MOSTRAR RESERVAS
-================================ */
+/* MOSTRAR RESERVAS */
 
 function mostrarReservas() {
 
     listaReservas.innerHTML = "";
 
 
-    if (reservas.length === 0) {
-
-        semReservas.hidden = false;
-
-        return;
-
-    }
-
-
-    semReservas.hidden = true;
+    semReservas.hidden =
+        reservas.length > 0;
 
 
     reservas.forEach(
-        function (reserva) {
+        function(reserva) {
 
             const equipamento =
                 equipamentos.find(
-                    function (item) {
+                    function(item) {
 
                         return (
                             item.id ===
-                            reserva.equipamentoId
+                            reserva.equipamento
                         );
 
                     }
@@ -484,7 +351,7 @@ function mostrarReservas() {
 
             const div =
                 document.createElement(
-                    "article"
+                    "div"
                 );
 
 
@@ -501,7 +368,7 @@ function mostrarReservas() {
                     </strong>
 
                     <p>
-                        Responsável:
+                        Nome:
                         ${reserva.nome}
                     </p>
 
@@ -521,30 +388,26 @@ function mostrarReservas() {
 
                 <button
                     type="button"
-                    class="botao-cancelar"
+                    class="cancelar"
                 >
-                    Cancelar reserva
+                    Cancelar
                 </button>
 
             `;
 
 
-            const botao =
-                div.querySelector(
-                    "button"
+            div
+                .querySelector(".cancelar")
+                .addEventListener(
+                    "click",
+                    function() {
+
+                        cancelar(
+                            reserva.id
+                        );
+
+                    }
                 );
-
-
-            botao.addEventListener(
-                "click",
-                function () {
-
-                    cancelarReserva(
-                        reserva.id
-                    );
-
-                }
-            );
 
 
             listaReservas.appendChild(
@@ -557,9 +420,7 @@ function mostrarReservas() {
 }
 
 
-/* ==============================
-   FORMATAR DATA
-================================ */
+/* FORMATAR DATA */
 
 function formatarData(data) {
 
@@ -569,62 +430,22 @@ function formatarData(data) {
 
     return (
         partes[2]
-        +
-        "/"
-        +
-        partes[1]
-        +
-        "/"
-        +
-        partes[0]
+        + "/"
+        + partes[1]
+        + "/"
+        + partes[0]
     );
 
 }
 
 
-/* ==============================
-   CANCELAR RESERVA
-================================ */
+/* CANCELAR */
 
-function cancelarReserva(id) {
-
-    const reserva =
-        reservas.find(
-            function (item) {
-
-                return item.id === id;
-
-            }
-        );
-
-
-    if (!reserva) {
-
-        return;
-
-    }
-
-
-    const equipamento =
-        equipamentos.find(
-            function (item) {
-
-                return (
-                    item.id ===
-                    reserva.equipamentoId
-                );
-
-            }
-        );
-
+function cancelar(id) {
 
     const confirmar =
-        window.confirm(
-            "Deseja cancelar a reserva de "
-            +
-            equipamento.nome
-            +
-            "?"
+        confirm(
+            "Deseja cancelar esta reserva?"
         );
 
 
@@ -637,31 +458,28 @@ function cancelarReserva(id) {
 
     reservas =
         reservas.filter(
-            function (item) {
+            function(reserva) {
 
-                return item.id !== id;
+                return reserva.id !== id;
 
             }
         );
 
 
-    atualizarTela();
-
+    atualizar();
 
     alert(
-        "Reserva cancelada com sucesso!"
+        "Reserva cancelada."
     );
 
 }
 
 
-/* ==============================
-   FAZER RESERVA
-================================ */
+/* FAZER RESERVA */
 
 formulario.addEventListener(
     "submit",
-    function (event) {
+    function(event) {
 
         event.preventDefault();
 
@@ -675,72 +493,52 @@ formulario.addEventListener(
         }
 
 
-        const equipamentoId =
+        const equipamento =
             Number(
-                selectEquipamento.value
+                equipamentoSelect.value
             );
 
 
         const nome =
             document
-                .getElementById(
-                    "nome"
-                )
+                .getElementById("nome")
                 .value
                 .trim();
 
 
         const data =
-            campoData.value;
+            dataInput.value;
 
 
         const horario =
-            document
-                .getElementById(
-                    "horario"
-                )
-                .value;
+            horarioSelect.value;
 
-
-        /* VALIDAÇÃO DO NOME */
 
         if (nome.length < 3) {
 
             alert(
-                "Digite um nome com pelo menos 3 caracteres."
+                "Digite um nome válido."
             );
-
-            document
-                .getElementById(
-                    "nome"
-                )
-                .focus();
 
             return;
 
         }
 
 
-        /* VALIDAÇÃO DA DATA */
-
-        if (data < dataHoje) {
+        if (data < hoje) {
 
             alert(
-                "Escolha uma data igual ou posterior à data atual."
+                "Escolha uma data válida."
             );
-
-            campoData.focus();
 
             return;
 
         }
 
 
-        /* VERIFICAR CONFLITO */
-
         if (
-            estaReservado(
-                equipamentoId,
+            jaReservado(
+                equipamento,
                 data,
                 horario
             )
@@ -755,14 +553,12 @@ formulario.addEventListener(
         }
 
 
-        /* CRIAR RESERVA */
-
-        const novaReserva = {
+        reservas.push({
 
             id: Date.now(),
 
-            equipamentoId:
-                equipamentoId,
+            equipamento:
+                equipamento,
 
             nome:
                 nome,
@@ -773,75 +569,26 @@ formulario.addEventListener(
             horario:
                 horario
 
-        };
+        });
 
-
-        reservas.push(
-            novaReserva
-        );
-
-
-        /* LIMPAR */
 
         formulario.reset();
 
-
-        campoData.min =
-            dataHoje;
+        dataInput.min = hoje;
 
 
-        /* ATUALIZAR */
+        atualizar();
 
-        atualizarTela();
-
-
-        /* CONFIRMAÇÃO */
 
         alert(
             "Reserva realizada com sucesso!"
         );
 
-
-        /* IR PARA RESERVAS */
-
-        document
-            .getElementById(
-                "minhas-reservas"
-            )
-            .scrollIntoView({
-                behavior:
-                    "smooth"
-            });
-
     }
 );
 
 
-/* ==============================
-   LIMPAR FORMULÁRIO
-================================ */
-
-formulario.addEventListener(
-    "reset",
-    function () {
-
-        setTimeout(
-            function () {
-
-                campoData.min =
-                    dataHoje;
-
-            },
-            0
-        );
-
-    }
-);
-
-
-/* ==============================
-   PESQUISA
-================================ */
+/* PESQUISA */
 
 busca.addEventListener(
     "input",
@@ -849,9 +596,7 @@ busca.addEventListener(
 );
 
 
-/* ==============================
-   FILTRO
-================================ */
+/* FILTRO */
 
 categoria.addEventListener(
     "change",
@@ -859,11 +604,9 @@ categoria.addEventListener(
 );
 
 
-/* ==============================
-   ATUALIZAR TELA
-================================ */
+/* ATUALIZAR */
 
-function atualizarTela() {
+function atualizar() {
 
     preencherEquipamentos();
 
@@ -874,8 +617,6 @@ function atualizarTela() {
 }
 
 
-/* ==============================
-   INICIAR SISTEMA
-================================ */
+/* INICIAR */
 
-atualizarTela();
+atualizar();
