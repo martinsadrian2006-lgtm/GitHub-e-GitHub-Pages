@@ -1,264 +1,514 @@
-* {
-    box-sizing: border-box;
-}
+const equipamentos = [
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f4f6f8;
-    color: #222;
-}
+    {
+        id: 1,
+        nome: "Notebook Dell",
+        categoria: "Informática",
+        descricao: "Notebook para aulas e trabalhos."
+    },
 
+    {
+        id: 2,
+        nome: "Projetor Epson",
+        categoria: "Audiovisual",
+        descricao: "Projetor para apresentações."
+    },
 
-/* CABEÇALHO */
+    {
+        id: 3,
+        nome: "Tablet Samsung",
+        categoria: "Informática",
+        descricao: "Tablet para atividades e pesquisas."
+    },
 
-header {
-    background: #3157d5;
-    color: white;
-    padding: 30px 20px;
-    text-align: center;
-}
+    {
+        id: 4,
+        nome: "Caixa de Som",
+        categoria: "Audiovisual",
+        descricao: "Caixa de som para apresentações."
+    },
 
-header h1 {
-    margin: 0 0 10px;
-}
+    {
+        id: 5,
+        nome: "Kit Arduino",
+        categoria: "Laboratório",
+        descricao: "Kit para atividades de programação."
+    },
 
-header p {
-    margin-bottom: 20px;
-}
-
-nav {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-nav a {
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-nav a:hover {
-    text-decoration: underline;
-}
-
-
-/* CONTEÚDO */
-
-main {
-    width: 90%;
-    max-width: 1000px;
-    margin: 30px auto;
-}
-
-section {
-    background: white;
-    padding: 25px;
-    margin-bottom: 25px;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-}
-
-h2 {
-    margin-top: 0;
-}
-
-
-/* FILTROS */
-
-.filtros {
-    display: flex;
-    gap: 10px;
-    margin: 20px 0;
-}
-
-input,
-select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 7px;
-    font-size: 16px;
-}
-
-input:focus,
-select:focus,
-button:focus,
-a:focus {
-    outline: 3px solid #9db0ff;
-}
-
-
-/* EQUIPAMENTOS */
-
-#lista-equipamentos {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-}
-
-.card {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 18px;
-    background: #fafafa;
-}
-
-.card h3 {
-    margin-top: 0;
-}
-
-.card p {
-    color: #666;
-}
-
-.disponivel {
-    color: #18794e;
-    font-weight: bold;
-}
-
-.reservado {
-    color: #b42318;
-    font-weight: bold;
-}
-
-
-/* FORMULÁRIO */
-
-form {
-    display: grid;
-    gap: 10px;
-}
-
-form label {
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-.botoes {
-    display: flex;
-    gap: 10px;
-    margin-top: 15px;
-}
-
-button {
-    padding: 12px 18px;
-    border: none;
-    border-radius: 7px;
-    background: #3157d5;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #2444ad;
-}
-
-button.cancelar {
-    background: #ddd;
-    color: #222;
-}
-
-button.cancelar:hover {
-    background: #ccc;
-}
-
-
-/* RESERVAS */
-
-.reserva {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 10px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-}
-
-.reserva p {
-    margin: 5px 0;
-    color: #666;
-}
-
-.botao-cancelar {
-    background: #b42318;
-}
-
-.botao-cancelar:hover {
-    background: #8f1c14;
-}
-
-
-/* ESTADO VAZIO */
-
-#estado-vazio,
-#sem-reservas {
-    color: #777;
-    padding: 15px;
-    border: 1px dashed #ccc;
-    border-radius: 8px;
-    text-align: center;
-}
-
-
-/* RODAPÉ */
-
-footer {
-    text-align: center;
-    padding: 25px;
-    color: #666;
-}
-
-
-/* TABLET */
-
-@media (max-width: 768px) {
-
-    #lista-equipamentos {
-        grid-template-columns: repeat(2, 1fr);
+    {
+        id: 6,
+        nome: "Webcam",
+        categoria: "Informática",
+        descricao: "Webcam para aulas online."
     }
 
-    .filtros {
-        flex-direction: column;
-    }
+];
+
+
+let reservas = [];
+
+
+const listaEquipamentos =
+    document.getElementById("lista-equipamentos");
+
+const busca =
+    document.getElementById("busca");
+
+const categoria =
+    document.getElementById("categoria");
+
+const estadoVazio =
+    document.getElementById("estado-vazio");
+
+const selectEquipamento =
+    document.getElementById("equipamento");
+
+const formulario =
+    document.getElementById("form-reserva");
+
+const listaReservas =
+    document.getElementById("lista-reservas");
+
+const semReservas =
+    document.getElementById("sem-reservas");
+
+
+/* VERIFICA SE O EQUIPAMENTO ESTÁ RESERVADO */
+
+function estaReservado(id) {
+
+    return reservas.some(function(reserva) {
+
+        return reserva.equipamentoId === id;
+
+    });
 
 }
 
 
-/* CELULAR */
+/* MOSTRAR EQUIPAMENTOS */
 
-@media (max-width: 480px) {
+function mostrarEquipamentos() {
 
-    main {
-        width: 95%;
+    const texto =
+        busca.value.toLowerCase();
+
+    const filtro =
+        categoria.value;
+
+
+    listaEquipamentos.innerHTML = "";
+
+
+    const resultados =
+        equipamentos.filter(function(equipamento) {
+
+            const nome =
+                equipamento.nome.toLowerCase();
+
+            const descricao =
+                equipamento.descricao.toLowerCase();
+
+
+            const encontrouTexto =
+                nome.includes(texto) ||
+                descricao.includes(texto);
+
+
+            const encontrouCategoria =
+                filtro === "todas" ||
+                equipamento.categoria === filtro;
+
+
+            return encontrouTexto &&
+                   encontrouCategoria;
+
+        });
+
+
+    if (resultados.length === 0) {
+
+        estadoVazio.style.display = "block";
+
+        return;
+
     }
 
-    section {
-        padding: 18px;
-    }
 
-    #lista-equipamentos {
-        grid-template-columns: 1fr;
-    }
+    estadoVazio.style.display = "none";
 
-    .reserva {
-        flex-direction: column;
-        align-items: flex-start;
-    }
 
-    .botoes {
-        flex-direction: column;
-    }
+    resultados.forEach(function(equipamento) {
 
-    button {
-        width: 100%;
-    }
+        const reservado =
+            estaReservado(equipamento.id);
+
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <h3>${equipamento.nome}</h3>
+
+            <p>
+                ${equipamento.categoria}
+            </p>
+
+            <p>
+                ${equipamento.descricao}
+            </p>
+
+            <p class="${reservado ? "reservado" : "disponivel"}">
+
+                ${reservado ? "Reservado" : "Disponível"}
+
+            </p>
+
+            <button
+                type="button"
+                ${reservado ? "disabled" : ""}
+            >
+                ${reservado ? "Indisponível" : "Reservar"}
+            </button>
+
+        `;
+
+
+        const botao =
+            card.querySelector("button");
+
+
+        if (!reservado) {
+
+            botao.addEventListener(
+                "click",
+                function() {
+
+                    selectEquipamento.value =
+                        equipamento.id;
+
+                    document
+                        .getElementById("reserva")
+                        .scrollIntoView({
+                            behavior: "smooth"
+                        });
+
+                }
+            );
+
+        }
+
+
+        listaEquipamentos.appendChild(card);
+
+    });
 
 }
+
+
+/* PREENCHER SELECT */
+
+function preencherEquipamentos() {
+
+    selectEquipamento.innerHTML = `
+
+        <option value="">
+            Selecione um equipamento
+        </option>
+
+    `;
+
+
+    equipamentos.forEach(function(equipamento) {
+
+        if (!estaReservado(equipamento.id)) {
+
+            const option =
+                document.createElement("option");
+
+            option.value =
+                equipamento.id;
+
+            option.textContent =
+                equipamento.nome;
+
+            selectEquipamento.appendChild(option);
+
+        }
+
+    });
+
+}
+
+
+/* MOSTRAR RESERVAS */
+
+function mostrarReservas() {
+
+    listaReservas.innerHTML = "";
+
+
+    if (reservas.length === 0) {
+
+        semReservas.style.display =
+            "block";
+
+        return;
+
+    }
+
+
+    semReservas.style.display =
+        "none";
+
+
+    reservas.forEach(function(reserva) {
+
+        const equipamento =
+            equipamentos.find(function(item) {
+
+                return item.id ===
+                    reserva.equipamentoId;
+
+            });
+
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "reserva";
+
+
+        div.innerHTML = `
+
+            <div>
+
+                <strong>
+                    ${equipamento.nome}
+                </strong>
+
+                <p>
+                    Responsável:
+                    ${reserva.nome}
+                </p>
+
+                <p>
+                    Data:
+                    ${reserva.data}
+                </p>
+
+                <p>
+                    Horário:
+                    ${reserva.horario}
+                </p>
+
+            </div>
+
+            <button
+                class="botao-cancelar"
+                type="button"
+            >
+                Cancelar reserva
+            </button>
+
+        `;
+
+
+        const botao =
+            div.querySelector("button");
+
+
+        botao.addEventListener(
+            "click",
+            function() {
+
+                cancelarReserva(
+                    reserva.id
+                );
+
+            }
+        );
+
+
+        listaReservas.appendChild(div);
+
+    });
+
+}
+
+
+/* CANCELAR RESERVA */
+
+function cancelarReserva(id) {
+
+    const confirmar =
+        confirm(
+            "Deseja cancelar esta reserva?"
+        );
+
+
+    if (!confirmar) {
+
+        return;
+
+    }
+
+
+    reservas =
+        reservas.filter(function(reserva) {
+
+            return reserva.id !== id;
+
+        });
+
+
+    atualizarTela();
+
+}
+
+
+/* FAZER RESERVA */
+
+formulario.addEventListener(
+    "submit",
+    function(event) {
+
+        event.preventDefault();
+
+
+        const equipamentoId =
+            Number(
+                selectEquipamento.value
+            );
+
+
+        const nome =
+            document
+                .getElementById("nome")
+                .value
+                .trim();
+
+
+        const data =
+            document
+                .getElementById("data")
+                .value;
+
+
+        const horario =
+            document
+                .getElementById("horario")
+                .value;
+
+
+        if (!equipamentoId ||
+            !nome ||
+            !data ||
+            !horario) {
+
+            alert(
+                "Preencha todos os campos."
+            );
+
+            return;
+
+        }
+
+
+        if (nome.length < 3) {
+
+            alert(
+                "Digite um nome válido."
+            );
+
+            return;
+
+        }
+
+
+        if (estaReservado(equipamentoId)) {
+
+            alert(
+                "Esse equipamento já está reservado."
+            );
+
+            return;
+
+        }
+
+
+        const novaReserva = {
+
+            id: Date.now(),
+
+            equipamentoId:
+                equipamentoId,
+
+            nome:
+                nome,
+
+            data:
+                data,
+
+            horario:
+                horario
+
+        };
+
+
+        reservas.push(
+            novaReserva
+        );
+
+
+        formulario.reset();
+
+
+        atualizarTela();
+
+
+        alert(
+            "Reserva realizada com sucesso!"
+        );
+
+    }
+);
+
+
+/* ATUALIZAR A PÁGINA */
+
+function atualizarTela() {
+
+    preencherEquipamentos();
+
+    mostrarEquipamentos();
+
+    mostrarReservas();
+
+}
+
+
+/* PESQUISA */
+
+busca.addEventListener(
+    "input",
+    mostrarEquipamentos
+);
+
+
+/* FILTRO */
+
+categoria.addEventListener(
+    "change",
+    mostrarEquipamentos
+);
+
+
+/* INICIAR */
+
+atualizarTela();
