@@ -2,25 +2,14 @@
     box-sizing: border-box;
 }
 
-
-html {
-    scroll-behavior: smooth;
-}
-
-
 body {
     margin: 0;
 
-    font-family:
-        Arial,
-        Helvetica,
-        sans-serif;
+    font-family: Arial, sans-serif;
 
-    background: #f4f6f8;
+    background: #f2f2f2;
 
-    color: #202632;
-
-    line-height: 1.5;
+    color: #222;
 }
 
 
@@ -31,70 +20,39 @@ header {
 
     color: white;
 
-    padding: 25px 20px;
+    text-align: center;
+
+    padding: 25px 15px;
 }
-
-
-.cabecalho {
-    width: 90%;
-
-    max-width: 1100px;
-
-    margin: auto;
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    gap: 30px;
-}
-
 
 header h1 {
-    margin: 0 0 5px;
-
-    font-size: 32px;
-}
-
-
-header p {
     margin: 0;
 }
 
-
-/* MENU */
+header p {
+    margin: 8px 0 18px;
+}
 
 nav {
     display: flex;
 
-    gap: 10px;
+    justify-content: center;
+
+    gap: 15px;
 
     flex-wrap: wrap;
 }
-
 
 nav a {
     color: white;
 
     text-decoration: none;
 
-    padding: 9px 12px;
-
-    border-radius: 7px;
+    font-weight: bold;
 }
-
 
 nav a:hover {
-    background: rgba(255, 255, 255, 0.15);
-}
-
-
-nav a:focus-visible {
-    outline: 3px solid white;
-
-    outline-offset: 3px;
+    text-decoration: underline;
 }
 
 
@@ -103,308 +61,159 @@ nav a:focus-visible {
 main {
     width: 90%;
 
-    max-width: 1100px;
+    max-width: 900px;
 
-    margin: 30px auto;
+    margin: 25px auto;
 }
-
-
-/* SEÇÕES */
 
 section {
     background: white;
 
-    padding: 28px;
+    padding: 20px;
 
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 
-    border-radius: 14px;
-
-    box-shadow:
-        0 5px 20px rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
 }
 
-
-/* INTRODUÇÃO */
-
-.introducao {
-    background: #eef2ff;
-
-    border-left: 5px solid #3157d5;
-}
-
-
-.introducao h2 {
+h2 {
     margin-top: 0;
 }
 
 
-/* TÍTULOS */
-
-.titulo-secao {
-    margin-bottom: 25px;
-}
-
-
-.titulo-secao > div {
-    display: flex;
-
-    gap: 12px;
-
-    align-items: flex-start;
-}
-
-
-.titulo-secao span {
-    width: 35px;
-
-    height: 35px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    background: #202632;
-
-    color: white;
-
-    border-radius: 8px;
-
-    font-weight: bold;
-
-    flex-shrink: 0;
-}
-
-
-.titulo-secao h2 {
-    margin: 0 0 5px;
-}
-
-
-.titulo-secao p {
-    margin: 0;
-
-    color: #697386;
-}
-
-
-/* FILTROS */
+/* PESQUISA */
 
 .filtros {
-    display: grid;
+    display: flex;
 
-    grid-template-columns: 2fr 1fr;
+    gap: 10px;
 
-    gap: 15px;
-
-    margin-bottom: 25px;
+    margin-bottom: 20px;
 }
-
-
-label {
-    display: block;
-
-    margin-bottom: 7px;
-
-    font-weight: bold;
-}
-
 
 input,
 select {
     width: 100%;
 
-    padding: 12px;
+    padding: 10px;
 
-    border: 1px solid #cfd5df;
+    border: 1px solid #bbb;
 
-    border-radius: 8px;
-
-    background: white;
-
-    color: #202632;
+    border-radius: 5px;
 
     font-size: 16px;
-}
-
-
-input:focus-visible,
-select:focus-visible {
-    outline: 3px solid #b8c5ff;
-
-    border-color: #3157d5;
 }
 
 
 /* EQUIPAMENTOS */
 
-.lista-equipamentos {
+#lista-equipamentos {
     display: grid;
 
     grid-template-columns:
         repeat(3, 1fr);
 
-    gap: 16px;
+    gap: 10px;
 }
 
+.equipamento {
+    border: 1px solid #ddd;
 
-.card {
-    border: 1px solid #dfe3e9;
+    padding: 15px;
 
-    border-radius: 12px;
-
-    padding: 18px;
-
-    background: #fafbfc;
+    border-radius: 6px;
 }
 
-
-.card h3 {
+.equipamento h3 {
     margin-top: 0;
-
-    margin-bottom: 7px;
 }
 
-
-.card p {
-    color: #687386;
-
-    font-size: 14px;
+.equipamento p {
+    color: #666;
 }
 
-
-.status {
-    display: inline-block;
-
-    padding: 5px 9px;
-
-    border-radius: 20px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-}
-
-
-.disponivel {
-    background: #e7f6ee;
-
-    color: #18794e;
-}
-
-
-.reservado {
-    background: #fff0ef;
-
-    color: #b42318;
-}
-
-
-.card button {
+.equipamento button {
     width: 100%;
-
-    margin-top: 10px;
 }
 
 
 /* FORMULÁRIO */
 
-#form-reserva {
+form {
     display: grid;
 
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 18px;
+    gap: 8px;
 }
 
+form label {
+    font-weight: bold;
 
-.campo {
-    display: flex;
-
-    flex-direction: column;
-}
-
-
-.botoes {
-    grid-column: 1 / -1;
-
-    display: flex;
-
-    gap: 10px;
-
-    flex-wrap: wrap;
-
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 
 /* BOTÕES */
 
-.botao {
+.botoes {
+    display: flex;
+
+    gap: 10px;
+
+    margin-top: 10px;
+}
+
+button {
+    padding: 10px 15px;
+
     border: none;
 
-    border-radius: 8px;
+    border-radius: 5px;
 
-    padding: 12px 18px;
+    background: #3157d5;
 
-    font-size: 16px;
+    color: white;
+
+    font-size: 15px;
 
     font-weight: bold;
 
     cursor: pointer;
 }
 
+button:hover {
+    background: #2444ad;
+}
 
-.botao:focus-visible,
-.card button:focus-visible {
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+a:focus-visible {
     outline: 3px solid #9db0ff;
 
     outline-offset: 2px;
 }
 
+.limpar {
+    background: #ddd;
 
-.principal {
-    background: #3157d5;
-
-    color: white;
+    color: #222;
 }
 
-
-.principal:hover {
-    background: #2444ad;
-}
-
-
-.secundario {
-    background: #e3e6eb;
-
-    color: #202632;
-}
-
-
-.secundario:hover {
-    background: #d2d6dc;
+.limpar:hover {
+    background: #ccc;
 }
 
 
 /* RESERVAS */
 
-.lista-reservas {
-    display: grid;
-
-    gap: 12px;
-}
-
-
 .reserva {
-    border: 1px solid #dfe3e9;
+    border: 1px solid #ddd;
 
-    border-radius: 10px;
+    padding: 15px;
 
-    padding: 17px;
+    margin-bottom: 10px;
+
+    border-radius: 6px;
 
     display: flex;
 
@@ -412,61 +221,37 @@ select:focus-visible {
 
     align-items: center;
 
-    gap: 15px;
+    gap: 10px;
 }
-
-
-.reserva strong {
-    font-size: 17px;
-}
-
 
 .reserva p {
-    margin: 4px 0;
+    margin: 5px 0;
 
-    color: #687386;
+    color: #666;
+}
+
+.cancelar {
+    background: #c62828;
+}
+
+.cancelar:hover {
+    background: #a51f1f;
 }
 
 
-.botao-cancelar {
-    border: none;
+/* ESTADOS VAZIOS */
 
-    border-radius: 8px;
-
-    padding: 10px 14px;
-
-    background: #b42318;
-
-    color: white;
-
-    font-weight: bold;
-
-    cursor: pointer;
-}
-
-
-.botao-cancelar:hover {
-    background: #8f1c14;
-}
-
-
-/* ESTADO VAZIO */
-
-.estado-vazio {
-    padding: 20px;
-
-    border: 1px dashed #cfd5df;
-
-    border-radius: 10px;
+#sem-equipamentos,
+#sem-reservas {
+    color: #777;
 
     text-align: center;
 
-    color: #687386;
-}
+    padding: 15px;
 
+    border: 1px dashed #bbb;
 
-.estado-vazio p {
-    margin-bottom: 0;
+    border-radius: 5px;
 }
 
 
@@ -475,9 +260,9 @@ select:focus-visible {
 footer {
     text-align: center;
 
-    padding: 30px;
+    padding: 20px;
 
-    color: #687386;
+    color: #666;
 }
 
 
@@ -485,36 +270,8 @@ footer {
 
 @media (max-width: 768px) {
 
-    .cabecalho {
-        flex-direction: column;
-
-        align-items: flex-start;
-    }
-
-
-    nav {
-        width: 100%;
-    }
-
-
-    .filtros {
-        grid-template-columns: 1fr;
-    }
-
-
-    .lista-equipamentos {
-        grid-template-columns:
-            repeat(2, 1fr);
-    }
-
-
-    #form-reserva {
-        grid-template-columns: 1fr;
-    }
-
-
-    .botoes {
-        grid-column: auto;
+    #lista-equipamentos {
+        grid-template-columns: repeat(2, 1fr);
     }
 
 }
@@ -522,32 +279,19 @@ footer {
 
 /* CELULAR */
 
-@media (max-width: 480px) {
-
-    header {
-        padding: 22px 15px;
-    }
-
-
-    .cabecalho {
-        width: 100%;
-    }
-
+@media (max-width: 500px) {
 
     main {
         width: 95%;
     }
 
-
-    section {
-        padding: 20px;
+    .filtros {
+        flex-direction: column;
     }
 
-
-    .lista-equipamentos {
+    #lista-equipamentos {
         grid-template-columns: 1fr;
     }
-
 
     .reserva {
         flex-direction: column;
@@ -555,16 +299,13 @@ footer {
         align-items: flex-start;
     }
 
-
     .reserva button {
         width: 100%;
     }
 
-
     .botoes {
         flex-direction: column;
     }
-
 
     .botoes button {
         width: 100%;
