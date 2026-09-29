@@ -47,18 +47,6 @@ ReservaEscolar/
 ├── script.js
 └── README.md
 ```
-## Publicação no GitHub Pages
-
-1. Criar um repositório público no GitHub.
-2. Adicionar os arquivos do projeto.
-3. Fazer commits das alterações.
-4. Criar uma branch para uma alteração técnica.
-5. Abrir um Pull Request e pedir revisão de um colega.
-6. Integrar a alteração na branch `main`.
-7. Acessar **Settings → Pages**.
-8. Em publicação por branch, selecionar `main` e a pasta `/root`.
-9. Salvar e aguardar a publicação.
-
 ## Observação
 
 O projeto é uma demonstração acadêmica. As reservas ficam apenas na memória da página e são apagadas quando ela é recarregada.
