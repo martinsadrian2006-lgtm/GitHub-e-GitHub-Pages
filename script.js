@@ -106,6 +106,11 @@ const semEquipamentos =
         "sem-equipamentos"
     );
 
+const contadorEquipamentos =
+    document.getElementById(
+        "contador-equipamentos"
+    );
+
 const equipamentoSelect =
     document.getElementById(
         "equipamento"
@@ -216,6 +221,12 @@ function mostrarEquipamentos() {
     semEquipamentos.hidden =
         encontrados.length > 0;
 
+    contadorEquipamentos.textContent =
+        "🔎 " +
+        encontrados.length +
+        (encontrados.length === 1
+            ? " equipamento encontrado"
+            : " equipamentos encontrados");
 
     encontrados.forEach(
         function(item) {
@@ -620,3 +631,24 @@ function atualizar() {
 /* INICIAR */
 
 atualizar();
+
+
+/* PERSONALIZAÇÃO - Contador de equipamentos e animações */
+
+    // O campo de busca já fazia parte do projeto original.
+    // A personalização abaixo mostra quantos equipamentos
+    // correspondem à pesquisa/filtro.
+
+
+/* PERSONALIZAÇÃO - Modo escuro */
+const modoEscuro = document.getElementById("modo-escuro");
+
+modoEscuro.addEventListener("click", function() {
+    document.body.classList.toggle("modo-noturno");
+
+    const ativo = document.body.classList.contains("modo-noturno");
+
+    modoEscuro.textContent = ativo
+        ? "☀️ Modo claro"
+        : "🌙 Modo escuro";
+});

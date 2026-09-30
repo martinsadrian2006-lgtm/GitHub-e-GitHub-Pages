@@ -313,3 +313,86 @@ footer {
     }
 
 }
+
+
+/* PERSONALIZAÇÃO - Lara Rodrigues */
+.modo-escuro {
+    width: auto;
+    padding: 8px 12px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.modo-escuro:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+}
+
+.identificacao {
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+body.modo-noturno {
+    background: #181a1f;
+    color: #f1f1f1;
+}
+
+body.modo-noturno section {
+    background: #24272e;
+}
+
+body.modo-noturno input,
+body.modo-noturno select {
+    background: #30343d;
+    color: #fff;
+    border-color: #555;
+}
+
+body.modo-noturno .equipamento,
+body.modo-noturno .reserva {
+    border-color: #4b4f58;
+}
+
+body.modo-noturno .equipamento p,
+body.modo-noturno .reserva p,
+body.modo-noturno footer {
+    color: #bbb;
+}
+
+
+/* PERSONALIZAÇÃO - Lara, Yuri, Alanna e Adrian */
+
+/* Animação dos cards de equipamentos */
+.equipamento {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.equipamento:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
+}
+
+/* Contador de equipamentos */
+.contador {
+    margin: 0 0 12px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #3157d5;
+}
+
+/* Destaque do contador no modo escuro */
+body.modo-noturno .contador {
+    color: #9db0ff;
+}
+
+/* Identificação do grupo */
+.identificacao {
+    font-size: 14px;
+    margin-top: 6px;
+}
